@@ -1,0 +1,1 @@
+if (draw_y < room_height/2) draw_y += 1

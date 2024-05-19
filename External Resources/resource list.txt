@@ -1,0 +1,27 @@
+[MUSIC]
+
+Rhapsody - "A Morbid Curiosity (Chiptune Version)"
+- https://freemusicarchive.org/music/rhapsody/single/a-morbid-curiosity-chiptune-version/
+- stage music
+
+Rhapsody - "Senseless Dreaming"
+- https://freemusicarchive.org/music/rhapsody/single/senseless-dreaming/
+- Boss intro/ending music
+
+Zane Little - "Aura Horizon"
+- https://freemusicarchive.org/music/zane-little/another-bag-of-chips/aura-horizon/
+- Intro/outro music
+
+Zane Little - "It Takes A Hero"
+- https://freemusicarchive.org/music/zane-little/a-bag-of-chips/it-takes-a-hero/
+- Boss fight music
+
+jonas the plugexpert - "Untitled"
+- https://freemusicarchive.org/music/jonas_the_plugexpert/2001_Selection/Jonas_The_Plugexpert_-_2001_Selection_-_55_Untitled/
+- Boss fight music
+
+
+[GMS2 LIBRARIES]
+
+"Scribble" (now known as "Scribble Deluxe") by Juju Adams
+https://github.com/JujuAdams

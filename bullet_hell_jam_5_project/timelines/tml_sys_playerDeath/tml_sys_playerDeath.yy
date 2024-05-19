@@ -1,0 +1,15 @@
+{
+  "$GMTimeline":"",
+  "%Name":"tml_sys_playerDeath",
+  "momentList":[
+    {"$GMMoment":"","%Name":"","evnt":{"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":120,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},"moment":120,"name":"","resourceType":"GMMoment","resourceVersion":"2.0",},
+    {"$GMMoment":"","%Name":"","evnt":{"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":240,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},"moment":240,"name":"","resourceType":"GMMoment","resourceVersion":"2.0",},
+  ],
+  "name":"tml_sys_playerDeath",
+  "parent":{
+    "name":"Transitions",
+    "path":"folders/Timelines/Transitions.yy",
+  },
+  "resourceType":"GMTimeline",
+  "resourceVersion":"2.0",
+}

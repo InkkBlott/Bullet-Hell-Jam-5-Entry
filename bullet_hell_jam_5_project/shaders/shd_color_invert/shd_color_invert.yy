@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_color_invert",
+  "name":"shd_color_invert",
+  "parent":{
+    "name":"Shaders",
+    "path":"folders/Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

@@ -1,0 +1,12 @@
+{
+  "$GMShader":"",
+  "%Name":"shd_color_fill_block",
+  "name":"shd_color_fill_block",
+  "parent":{
+    "name":"Shaders",
+    "path":"folders/Shaders.yy",
+  },
+  "resourceType":"GMShader",
+  "resourceVersion":"2.0",
+  "type":1,
+}

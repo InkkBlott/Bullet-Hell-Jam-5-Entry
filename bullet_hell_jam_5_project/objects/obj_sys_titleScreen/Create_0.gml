@@ -1,0 +1,1 @@
+start_text = scribble("START").blend(c_aqua, 1).scale(3).align(fa_center, fa_middle)

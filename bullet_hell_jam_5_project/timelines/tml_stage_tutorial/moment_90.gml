@@ -1,0 +1,1 @@
+instance_create_depth(stage_vars.spawn_x+25, stage_vars.spawn_y, DEPTH_LEVEL.SMALL_ENEMIES, obj_enemy).action_queue_default = STOCK_ACTION_QUEUES.test
