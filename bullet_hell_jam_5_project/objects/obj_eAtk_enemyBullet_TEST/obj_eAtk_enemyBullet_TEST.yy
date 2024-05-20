@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_enemybullet_TEST_00",
-    "path":"sprites/spr_enemybullet_TEST_00/spr_enemybullet_TEST_00.yy",
+    "name":"spr_atk_enemybullet_TEST_00",
+    "path":"sprites/spr_atk_enemybullet_TEST_00/spr_atk_enemybullet_TEST_00.yy",
   },
   "spriteMaskId":null,
   "visible":true,

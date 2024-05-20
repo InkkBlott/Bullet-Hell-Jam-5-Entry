@@ -1,3 +1,8 @@
+#macro c_fire #fc5130
+#macro c_ice #30bced
+#macro c_lightning #ffe97a
+#macro c_richBlack #262626
+
 //depth levels
 enum DEPTH_LEVEL {
 	HUD,
@@ -35,6 +40,7 @@ enum CHARACTER_ACTION {
 	TIMELINE, // @timeline, [?wait_until_done]
 	ATTACK, // [?wait_until_done]
 	METHOD, // {}method_function, [[]argument_array]
+	DESTROY, // (no args)
 }
 
 //Character action queue labels

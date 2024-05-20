@@ -80,7 +80,10 @@ if (act != undefined) {
 		method(id, act[1])(array_length(act) == 3 ? act[2] : undefined)
 		action_finished = true
 	}
-	
+	else if (act_code == CHARACTER_ACTION.DESTROY) { // (no args)
+		instance_destroy()
+		action_finished = true
+	}
 	if (action_finished) next_action()
 }
 else if (action_queue_default != undefined) {

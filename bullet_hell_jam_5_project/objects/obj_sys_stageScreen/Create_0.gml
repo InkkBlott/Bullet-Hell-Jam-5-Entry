@@ -5,22 +5,29 @@ PLAYER.reset()
 PLAYER_INSTANCE = instance_create_depth(PLAYER.spawn_x, PLAYER.spawn_y, DEPTH_LEVEL.PLAYER_CHARACTER, PLAYER.object)
 
 boss_gauges = []
-for (var i=0; i<3; i++) {
-	boss_gauges[i] = {
-		value: 0,
-		bg_x: room_width - ((sprite_get_width(spr_hud_bossGauge_bg)+2) * (i + 1)),
-		bg_y: 2,
-		bar_x: room_width - ((sprite_get_width(spr_hud_bossGauge_bg)+2) * (i + 1)) + 3,
-		bar_y: 5,
-		bar_sprite: spr_hud_bossGauge_bar1,
-		anim_frame: 0,
-	}
+//[DEV] Minimized mechanic for the jam!
+//for (var i=0; i<3; i++) {
+//	boss_gauges[i] = {
+//		value: 0,
+//		bg_x: room_width - ((sprite_get_width(spr_hud_bossGauge_bg)+2) * (i + 1)),
+//		bg_y: 2,
+//		bar_x: room_width - ((sprite_get_width(spr_hud_bossGauge_bg)+2) * (i + 1)) + 3,
+//		bar_y: 5,
+//		bar_sprite: spr_hud_bossGauge_bar1,
+//		anim_frame: 0,
+//	}
+//}
+//boss_gauges[1].bar_sprite = spr_hud_bossGauge_bar2
+//boss_gauges[2].bar_sprite = spr_hud_bossGauge_bar3
+boss_gauges[0] = {
+	value: 0.5,
+	bg_x: room_width - sprite_get_width(spr_hud_bossGauge_bg) - 2,
+	bg_y: 2,
+	bar_x: room_width - sprite_get_width(spr_hud_bossGauge_bg) + 1,
+	bar_y: 5,
+	bar_sprite: spr_hud_bossGauge_bar1,
+	anim_frame: 0,
 }
-boss_gauges[1].bar_sprite = spr_hud_bossGauge_bar2
-boss_gauges[2].bar_sprite = spr_hud_bossGauge_bar3
-
-boss_gauges[1].value = 0.5 //[DEV] TEST
-boss_gauges[2].value = 1
 
 current_stage = undefined
 current_stage_index = 0
@@ -59,11 +66,12 @@ new_prop = function(_x, _y, sprite, depth_level = DEPTH_LEVEL.BACKGROUND, destro
 	return o
 }
 
-/// @function new_fx(x, y, obj, duration, [depth_level], [direction], [speed])
-new_fx = function(_x, _y, obj, duration, depth_level=DEPTH_LEVEL.BACKGROUND, dir=undefined, spd=undefined) {
+/// @function new_fx(x, y, obj, duration, [depth_level], [direction], [speed], [blend_color])
+new_fx = function(_x, _y, obj, duration, depth_level=DEPTH_LEVEL.BACKGROUND, dir=undefined, spd=undefined, blend_color=undefined) {
 	var o = instance_create_depth(_x, _y, depth_level, obj)
 	o.destroy_timer = duration
 	if (dir) o.direction = dir
 	if (spd) o.speed = spd
+	if (blend_color) o.image_blend = blend_color
 	return o
 }

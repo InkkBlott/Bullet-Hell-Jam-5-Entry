@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_playerbullet_TEST_00",
-    "path":"sprites/spr_playerbullet_TEST_00/spr_playerbullet_TEST_00.yy",
+    "name":"spr_atk_playerbullet_TEST_00",
+    "path":"sprites/spr_atk_playerbullet_TEST_00/spr_atk_playerbullet_TEST_00.yy",
   },
   "spriteMaskId":null,
   "visible":true,

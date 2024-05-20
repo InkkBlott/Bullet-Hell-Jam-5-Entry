@@ -1,4 +1,4 @@
-for (var i=0; i<3; i++) {
+for (var i=0; i<array_length(boss_gauges); i++) {
 	var gauge = boss_gauges[i]
 	if (gauge.value <= 0) continue;
 	gauge.anim_frame += gauge.value / 2
