@@ -1,8 +1,7 @@
 event_inherited()
 
+level = 0
 player_control_active = true
-attack_cooldown = 0
-attack_cooldown_max = 25
 movement_speed = 3.5
 movement_speed_slow = 1.5
 hit_invincibility = 0
@@ -17,8 +16,8 @@ action_queue = [
 action_queue_label = ACTION_QUEUE_LABEL.PLAYER_SPAWN
 
 attack = function() { //override
-	attack_ongoing = true
-	instance_set_timeline(id, tml_playerAttack_default_TEST)
+	attack_ongoing = true //Set to false at the end of attack timelines
+	instance_set_timeline(id, PLAYER.levels[level].attack_timeline)
 }
 
 /// @function is_player_controlled

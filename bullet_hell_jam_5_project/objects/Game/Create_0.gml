@@ -12,6 +12,21 @@ player = {
 	hp_max: 3,
 	spawn_x: room_width/2,
 	spawn_y: room_height*2/3,
+	levels: [
+		{ // level 0 (starting)
+			score_requirement: 0,
+			attack_timeline: tml_playerAttack_default_01,
+		},
+		{ // level 1
+			score_requirement: 100,
+			attack_timeline: tml_playerAttack_default_02,
+		},
+		{ // level 2
+			score_requirement: 200,
+			attack_timeline: tml_playerAttack_default_03,
+		},
+	],
+	
 	/// @function reset()
 	reset: function() {
 		hp = hp_max
@@ -21,12 +36,12 @@ player = {
 #macro PLAYER_INSTANCE global.game.player.instance
 
 stages = [
-	//tml_stage_tutorial, //0
-	tml_stage_main, //0
+	tml_stage_test
+	//tml_stage_main, //0
 ]
 stage_index = 0
-stage_manager = noone //obj_sys_stageScreen instance
-#macro WORLD global.game.stage_manager
+stage_instance = noone //obj_sys_stageScreen instance
+#macro WORLD global.game.stage_instance
 
 hitstop = 0
 paused = false

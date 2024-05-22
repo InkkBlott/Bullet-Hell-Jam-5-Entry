@@ -1,12 +1,17 @@
 event_inherited()
 
 if (!variable_instance_exists(id, "stage")) stage = noone 
-hp = 100
-hp_max = 100
+hp = 10
+hp_max = 10
+point_value = 100
+
 alive = true
+boss_status = false //when true, killing this enemy will set the "stage complete" status
 combat_active = true
 contact_damage = true //when true, player takes damage from touching
 player_hit = false
+attack_code = 0
+default_attack_timeline = tml_enemyAttack_TEST
 destroy_out_of_bounds = false
 out_of_bounds_buffer = 0
 scroll_with_stage = false
@@ -29,6 +34,8 @@ damage = function(dmg_amount, source_instance=noone) {
 }
 /// @function death
 death = function() {
+	WORLD.score_points += point_value
+	if (boss_status) WORLD.stage_complete = true
 	instance_destroy()
 }
 
@@ -57,7 +64,8 @@ shoot = function(obj, dir=undefined, spd=undefined, off_x=0, off_y=0, off_rot=fa
 	return o
 }
 
-attack = function() {
+attack = function(code=0) {
 	attack_ongoing = true
-	instance_set_timeline(id, tml_enemyAttack_TEST)
+	attack_code = code
+	instance_set_timeline(id, default_attack_timeline)
 }

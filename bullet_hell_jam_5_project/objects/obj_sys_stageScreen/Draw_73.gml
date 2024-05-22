@@ -1,7 +1,7 @@
 /// @description HUD
 
 //Player HP
-for (var i=0; i<PLAYER.hp_max; i++) draw_sprite(spr_hud_playerHP, i<PLAYER.hp ? 0 : 1, i*25, 0)
+for (var i=0; i<PLAYER.hp_max; i++) draw_sprite(spr_hud_playerHP, i<PLAYER.hp ? 0 : 1, i*sprite_get_width(spr_hud_playerHP), 0)
 
 //Boss Gauges
 for (var i=0; i<array_length(boss_gauges); i++) {
@@ -11,3 +11,6 @@ for (var i=0; i<array_length(boss_gauges); i++) {
 	var cutoff = sprite_get_height(gauge.bar_sprite) * (1 - gauge.value)
 	draw_sprite_part(gauge.bar_sprite, floor(gauge.anim_frame), 0, cutoff, sprite_get_width(gauge.bar_sprite), sprite_get_height(gauge.bar_sprite) - cutoff, gauge.bar_x, gauge.bar_y + cutoff)
 }
+
+//score
+draw_text_scribble(room_width/2, 2, $"[fa_center][scale,0.8]Score: {score_points}")

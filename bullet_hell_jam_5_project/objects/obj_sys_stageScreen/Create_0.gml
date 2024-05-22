@@ -2,7 +2,6 @@ WORLD = id
 depth = DEPTH_LEVEL.HUD
 
 PLAYER.reset()
-PLAYER_INSTANCE = instance_create_depth(PLAYER.spawn_x, PLAYER.spawn_y, DEPTH_LEVEL.PLAYER_CHARACTER, PLAYER.object)
 
 boss_gauges = []
 //[DEV] Minimized mechanic for the jam!
@@ -32,6 +31,8 @@ boss_gauges[0] = {
 current_stage = undefined
 current_stage_index = 0
 stage_vars = {}
+stage_complete = false
+score_points = 0
 scrolling_x = 0
 scrolling_y = 0
 
@@ -66,12 +67,13 @@ new_prop = function(_x, _y, sprite, depth_level = DEPTH_LEVEL.BACKGROUND, destro
 	return o
 }
 
-/// @function new_fx(x, y, obj, duration, [depth_level], [direction], [speed], [blend_color])
-new_fx = function(_x, _y, obj, duration, depth_level=DEPTH_LEVEL.BACKGROUND, dir=undefined, spd=undefined, blend_color=undefined) {
+/// @function new_fx(x, y, obj, duration, [depth_level], [direction], [speed], [sprite], [blend_color])
+new_fx = function(_x, _y, obj, duration, depth_level=DEPTH_LEVEL.BACKGROUND, dir=undefined, spd=undefined, sprite=undefined, blend_color=undefined) {
 	var o = instance_create_depth(_x, _y, depth_level, obj)
 	o.destroy_timer = duration
 	if (dir) o.direction = dir
 	if (spd) o.speed = spd
+	if (sprite) o.sprite_index = sprite
 	if (blend_color) o.image_blend = blend_color
 	return o
 }

@@ -4,6 +4,7 @@ attack_active = true
 destroy_on_hit = false
 destroy_out_of_bounds = false
 out_of_bounds_buffer = 0
+destroy_timer = undefined //(number)
 scroll_with_stage = false
 scroll_factor = 1
 player_hit = false //for use in destroy event

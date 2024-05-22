@@ -1,4 +1,4 @@
-if (attack_ongoing and !timeline_running) attack_ongoing = false
+if (attack_ongoing and !instance_timeline_is_running(id)) attack_ongoing = false
 
 //execute queued actions
 var act = get_current_action()
@@ -63,16 +63,18 @@ if (act != undefined) {
 		if (action_counter == 0) {
 			instance_set_timeline(id, act[1])
 			action_counter ++
-		} else if (!timeline_running or array_length(act) < 3 or !act[2]) {
+		} else if (!instance_timeline_is_running(id) or array_length(act) < 3 or !act[2]) {
 			action_finished = true
 		}
 	}
-	else if (act_code == CHARACTER_ACTION.ATTACK) { // [?wait_until_done]
+	else if (act_code == CHARACTER_ACTION.ATTACK) { // [attack_index], [?wait_until_done]
 		if (action_counter == 0) {
-			attack()
+			var atk_code = 0
+			if (array_length(act) >= 2) atk_code = act[1]
+			attack(atk_code)
 			action_counter ++
 		}
-		if (!attack_ongoing or array_length(act) < 2 or !act[1]) {
+		if (!attack_ongoing or array_length(act) < 3 or !act[2]) {
 			action_finished = true
 		}
 	}

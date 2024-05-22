@@ -10,8 +10,8 @@
   "name":"obj_player",
   "overriddenProperties":[],
   "parent":{
-    "name":"Player",
-    "path":"folders/Objects/Characters/Player.yy",
+    "name":"Characters",
+    "path":"folders/Objects/Characters.yy",
   },
   "parentObjectId":{
     "name":"obj_character",
@@ -35,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_playerShip_TEST_00",
-    "path":"sprites/spr_playerShip_TEST_00/spr_playerShip_TEST_00.yy",
+    "name":"spr_playerShip_default_00",
+    "path":"sprites/spr_playerShip_default_00/spr_playerShip_default_00.yy",
   },
   "spriteMaskId":null,
   "visible":true,

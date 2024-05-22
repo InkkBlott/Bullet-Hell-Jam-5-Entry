@@ -1,4 +1,4 @@
-attack_power = 5
+attack_power = 1
 attack_active = true
 destroy_on_hit = true
 collisions = [] //in each index: [collision_instance, expiration_timer]

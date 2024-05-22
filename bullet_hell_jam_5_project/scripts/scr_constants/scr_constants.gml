@@ -38,7 +38,7 @@ enum CHARACTER_ACTION {
 	MOVE_POSITION, // #pos_x, #pos_y, #frames, [@anim_curve]
 	MOVE_PATH, // @path, #frames, [@anim_curve]
 	TIMELINE, // @timeline, [?wait_until_done]
-	ATTACK, // [?wait_until_done]
+	ATTACK, // [attack_index], [?wait_until_done]
 	METHOD, // {}method_function, [[]argument_array]
 	DESTROY, // (no args)
 }

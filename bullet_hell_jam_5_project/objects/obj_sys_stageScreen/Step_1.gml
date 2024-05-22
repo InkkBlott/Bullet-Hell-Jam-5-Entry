@@ -19,4 +19,4 @@ if (scrolling_x != 0 or scrolling_y != 0) {
 	}
 }
 
-if (!PLAYER_INSTANCE.alive and !GAME.timeline_running) instance_set_timeline(GAME, tml_sys_playerDeath)
+if (instance_exists(PLAYER_INSTANCE) and !PLAYER_INSTANCE.alive and !instance_timeline_is_running(GAME)) instance_set_timeline(GAME, tml_sys_playerDeath)

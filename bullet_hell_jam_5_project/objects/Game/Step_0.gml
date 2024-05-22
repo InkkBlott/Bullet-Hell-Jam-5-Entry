@@ -13,3 +13,7 @@ if (paused) {
 		if ((hitstop --) <= 0) toggle_pause()
 	}
 }
+
+//if (instance_timeline_is_running(id)) {
+//	show_debug_message($"TIMELINE: {timeline_position}")
+//}

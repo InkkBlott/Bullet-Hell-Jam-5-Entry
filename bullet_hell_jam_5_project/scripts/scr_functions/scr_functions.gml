@@ -95,4 +95,10 @@ function instance_stop_timeline(_id) {
 	_id.timeline_running = false
 }
 
+/// @function instance_timeline_is_running(id)
+//the built in variable doesn't change once the timeline executes its last action, so this is a more comprehensive check
+function instance_timeline_is_running(_id) {
+	return (_id.timeline_running and timeline_exists(_id.timeline_index) and _id.timeline_position <= timeline_max_moment(_id.timeline_index))
+}
+
 #endregion

@@ -33,9 +33,14 @@ global.action_queues = {}
 #macro STOCK_ACTION_QUEUES global.action_queues
 
 STOCK_ACTION_QUEUES.test = [
-	[CHARACTER_ACTION.WAIT, 60],
-	[CHARACTER_ACTION.ATTACK],
+	[CHARACTER_ACTION.WAIT, 120],
+	[CHARACTER_ACTION.ATTACK, 4],
 	[CHARACTER_ACTION.MOVE_PATH, PATHS.circle_small, 120],
+]
+STOCK_ACTION_QUEUES.boss_test = [
+	[CHARACTER_ACTION.WAIT, 60],
+	[CHARACTER_ACTION.ATTACK, 0, true],
+	[CHARACTER_ACTION.MOVE_PATH, PATHS.circle_small, 120, acv_bounce],
 ]
 
 #endregion

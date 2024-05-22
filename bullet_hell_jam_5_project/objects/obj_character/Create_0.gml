@@ -36,8 +36,9 @@ next_action = function() {
 	action_finished = false
 }
 
-/// @function attack()
+/// @function attack(attack_code)
 // should be overwritten by children that attack
-attack = function() {
+attack = function(code=0) {
 	attack_ongoing = true
+	attack_code = code
 }

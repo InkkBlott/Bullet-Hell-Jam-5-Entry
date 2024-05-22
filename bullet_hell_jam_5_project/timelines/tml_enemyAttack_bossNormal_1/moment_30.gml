@@ -1,0 +1,6 @@
+var d = (instance_exists(PLAYER_INSTANCE) ? point_direction(x+attack_points[1][0], y+attack_points[1][1], PLAYER_INSTANCE.x, PLAYER_INSTANCE.y) : 270)
+shoot(obj_eAtk_bullet_1, d, 2, attack_points[1][0], attack_points[1][1])
+shoot(obj_eAtk_bullet_1, d-15, 1.75, attack_points[1][0], attack_points[1][1])
+shoot(obj_eAtk_bullet_1, d+15, 1.75, attack_points[1][0], attack_points[1][1])
+shoot(obj_eAtk_bullet_1, d-30, 1.5, attack_points[1][0], attack_points[1][1])
+shoot(obj_eAtk_bullet_1, d+30, 1.5, attack_points[1][0], attack_points[1][1])
