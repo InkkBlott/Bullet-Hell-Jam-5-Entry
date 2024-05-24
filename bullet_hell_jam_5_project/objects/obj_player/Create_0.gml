@@ -2,7 +2,7 @@ event_inherited()
 
 level = 0
 player_control_active = true
-movement_speed = 3.5
+movement_speed = 3
 movement_speed_slow = 1.5
 hit_invincibility = 0
 hit_invincibility_max = 60
