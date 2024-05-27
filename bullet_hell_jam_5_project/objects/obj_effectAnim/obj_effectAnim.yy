@@ -11,8 +11,8 @@
   "name":"obj_effectAnim",
   "overriddenProperties":[],
   "parent":{
-    "name":"Effect Particles",
-    "path":"folders/Objects/Effect Particles.yy",
+    "name":"Effects",
+    "path":"folders/Objects/Effects.yy",
   },
   "parentObjectId":null,
   "persistent":false,

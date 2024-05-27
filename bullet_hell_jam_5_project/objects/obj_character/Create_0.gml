@@ -4,6 +4,7 @@ action_counter = 0
 action_variables = []
 action_finished = false
 action_queue_default = undefined
+preset_action_queues = []
 
 attack_ongoing = false
 
@@ -20,8 +21,8 @@ get_current_action_code = function() {
 }
 
 /// @function set_action_queue
-set_action_queue = function(action_array, label=undefined) {
-	action_queue = func_array_copy(action_array)
+set_action_queue = function(queue_array_or_index, label=undefined) {
+	action_queue = (typeof(queue_array_or_index) == "array") ? func_array_copy(queue_array_or_index) : func_array_copy(preset_action_queues[queue_array_or_index])
 	action_queue_label = label
 	action_counter = 0
 	action_variables = []
@@ -36,9 +37,14 @@ next_action = function() {
 	action_finished = false
 }
 
-/// @function attack(attack_code)
+/// @function attack([attack_code])
 // should be overwritten by children that attack
-attack = function(code=0) {
+attack = function(code=undefined) {
 	attack_ongoing = true
-	attack_code = code
+	if (code) attack_code = code
+}
+
+/// @function draw_mask
+draw_mask = function() {
+	//draw_sprite_stretched_ext(spr_shape_square_corner, 0, bbox_left, bbox_top, bbox_right-bbox_left, bbox_bottom-bbox_top, c_lime, 1)
 }

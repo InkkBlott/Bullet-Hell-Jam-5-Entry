@@ -77,3 +77,33 @@ new_fx = function(_x, _y, obj, duration, depth_level=DEPTH_LEVEL.BACKGROUND, dir
 	if (blend_color) o.image_blend = blend_color
 	return o
 }
+
+/// @function warningLine(x, y, direction, distance, duration, [density], [creator])
+warningLine = function(_x, _y, _dir, _dist, _dur, _freq=25, _creator=noone) {
+	var c = dcos(_dir)
+	var s = -dsin(_dir)
+	var ox, oy, in_frame
+	var start_in_frame = point_in_rectangle(_x, _y, -10, -10, room_width+10, room_height+10)
+	for (var i=0; i<=_dist; i+=_freq) {
+		ox = _x+(i*c)
+		oy = _y+(i*s)
+		in_frame = point_in_rectangle(ox, oy, -10, -10, room_width+10, room_height+10)
+		if (!in_frame) {
+			if (start_in_frame) return; //if going from in-bounds to out-of-bounds, terminate line
+			continue; //if out-of-bounds before and after iteration, just skip the effect creation and continue
+		} else if (!start_in_frame) { start_in_frame = true } //if going from out-of-bounds to in-bounds, trigger "start in bounds" state
+		new_fx(ox, oy, obj_fx_warning, _dur, DEPTH_LEVEL.WARNINGS).linked_instance = _creator
+	}
+}
+
+/// @function warningZone(x1, y1, x2, duration, [density], [circular], [creator])
+warningZone = function(_x1, _y1, _x2, _y2, _dur, _freq=25, _circle=false, _creator=noone) {
+	if (_circle) var center_x = (_x2-_x1)/2, center_y = (_y2-_y1)/2, size = min(_x2-_x1, _y2-_y1)
+	for (var _x=_x1; _x<=_x2; _x+=_freq) {
+		for (var _y=_y1; _y<=_y2; _y+=_freq) {
+			if (!point_in_rectangle(_x, _y, -10, -10, room_width+10, room_height+10)) continue;
+			if (_circle and point_distance(center_x, center_y, _x, _y) > size) continue;
+			new_fx(_x, _y, obj_fx_warning, _dur, DEPTH_LEVEL.WARNINGS).linked_instance = _creator
+		}
+	}
+}

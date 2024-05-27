@@ -69,8 +69,7 @@ if (act != undefined) {
 	}
 	else if (act_code == CHARACTER_ACTION.ATTACK) { // [attack_index], [?wait_until_done]
 		if (action_counter == 0) {
-			var atk_code = 0
-			if (array_length(act) >= 2) atk_code = act[1]
+			var atk_code = (array_length(act) >= 2) ? act[1] : undefined
 			attack(atk_code)
 			action_counter ++
 		}

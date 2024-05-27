@@ -1,9 +1,13 @@
 event_inherited()
 
-level = 0
-player_control_active = true
 movement_speed = 3
 movement_speed_slow = 1.5
+normal_sprite = spr_playerShip_default_00
+attacking_sprite = spr_playerShip_default_01
+focus_mode = false
+
+level = 0
+player_control_active = true
 hit_invincibility = 0
 hit_invincibility_max = 60
 alive = true
@@ -44,4 +48,8 @@ damage = function() {
 death = function() {
 	alive = false
 	trigger_death_fx = true
+}
+
+draw_mask = function() { //override
+	draw_sprite_stretched_ext((mask_index == attacking_sprite) ? spr_shape_circle_small : spr_shape_square_corner, 0, bbox_left, bbox_top, bbox_right-bbox_left, bbox_bottom-bbox_top, c_lime, 1)
 }

@@ -1,10 +1,10 @@
 event_inherited()
 
 if (attack_ongoing and !instance_timeline_is_running(id)) attack_ongoing = false //should be set at the end of attack timelines, but just in case
-
-var m_dir = -1
+if (focus_mode) focus_mode = false
+var m_dir = -1, attack_this_frame = false
 if (is_player_controlled()) {
-	//movement
+	//movement direction
 	var m_x = 0, m_y = 0
 	if (keyboard_check(vk_left)) m_x --
 	if (keyboard_check(vk_right)) m_x ++
@@ -13,18 +13,22 @@ if (is_player_controlled()) {
 	
 	if (m_x != 0 or m_y != 0) m_dir = point_direction(0, 0, m_x, m_y)
 	
+	//focus mode
+	if (keyboard_check(vk_shift)) focus_mode = true
+	
 	//shoot
 	if (!attack_ongoing and keyboard_check(vk_space)) { 
 		attack()
+		attack_this_frame = true
 	}
 }
 if (m_dir != -1) {
 	direction = m_dir
-	speed = (keyboard_check(vk_shift) ? movement_speed_slow : movement_speed)
+	speed = (focus_mode ? movement_speed_slow : movement_speed)
 } else speed = 0
 
 if (hit_invincibility > 0) hit_invincibility --
-
+mask_index = (attack_this_frame or attack_ongoing) ? attacking_sprite : normal_sprite //bigger collision mask when attacking
 visible = (alive and (hit_invincibility <= 0 or hit_invincibility % 4 < 2))
 
 if (trigger_death_fx) {

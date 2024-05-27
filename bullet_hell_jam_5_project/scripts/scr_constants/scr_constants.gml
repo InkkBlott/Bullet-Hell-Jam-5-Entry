@@ -3,19 +3,22 @@
 #macro c_lightning #ffe97a
 #macro c_richBlack #262626
 
+#macro ROOM_DIAGONAL 432.67 //roughly the distace between opposite corners of the 240 x 360 room
+
 //depth levels
 enum DEPTH_LEVEL {
 	HUD,
 	FOREGROUND,
 	ENEMY_ATTACKS_MAJOR,
 	ENEMY_ATTACKS,
+	SMALL_ENEMIES,
+	WARNINGS,
 	PLAYER_CHARACTER,
 	PLAYER_EFFECTS,
 	PLAYER_ATTACKS,
-	SMALL_ENEMIES,
 	SMALL_ENEMY_EFFECTS,
-	BIG_ENEMY_EFFECTS,
 	BIG_ENEMIES,
+	BIG_ENEMY_EFFECTS,
 	BACKGROUND,
 	STAGE_BACKDROP,
 }

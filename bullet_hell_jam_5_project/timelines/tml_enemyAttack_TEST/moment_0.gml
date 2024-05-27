@@ -1,0 +1,1 @@
+attack_variables[0] = irandom(4)

@@ -1,3 +1,5 @@
+randomize()
+
 window_set_size(room_width*SETTINGS.window_scale, room_height*SETTINGS.window_scale)
 window_position_reset()
 depth = DEPTH_LEVEL.HUD
