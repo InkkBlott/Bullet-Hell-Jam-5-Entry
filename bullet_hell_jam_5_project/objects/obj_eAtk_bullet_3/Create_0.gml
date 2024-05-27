@@ -6,3 +6,4 @@ out_of_bounds_buffer = 15
 bounce_limit = 1
 bounces_x = 0
 bounces_y = 0
+spin_speed = -10

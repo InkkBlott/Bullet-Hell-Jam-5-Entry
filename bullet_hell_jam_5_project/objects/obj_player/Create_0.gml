@@ -1,13 +1,26 @@
 event_inherited()
 
+normal_sprite = spr_playerShip_default_00
+shielded_sprite = spr_playerShip_default_01
+normal_mask = spr_playerShip_default_00
+attacking_mask = spr_playerShip_default_01
+
+focus_mode = false
+movement_speed = 3
+movement_speed_focus = 1.5
+
 level = 0
 player_control_active = true
-movement_speed = 3
-movement_speed_slow = 1.5
 hit_invincibility = 0
 hit_invincibility_max = 60
 alive = true
 trigger_death_fx = false
+
+parry_cooldown_counter = 0
+parry_window_counter = 0
+parry_invincibility = 0
+parry_invincibility_max = 30
+shielded = true
 
 action_queue = [
 	[CHARACTER_ACTION.MOVE_PATH, pth_playerSpawn, 60, acv_ease],
@@ -27,21 +40,47 @@ is_player_controlled = function() {
 
 /// @function is_vulnerable
 is_vulnerable = function() {
-	return (is_player_controlled() and hit_invincibility <= 0)
+	return (is_player_controlled() and hit_invincibility <= 0 and parry_invincibility <= 0)
 }
 
 /// @function damage
 damage = function() {
-	PLAYER.hp = max(PLAYER.hp - 1, 0)
+	if (shielded) {
+		shielded = false 
+		//TODO: play shield destroy sound
+	} else {
+		PLAYER.hp = max(PLAYER.hp - 1, 0)
+		parry_cooldown_counter = max(parry_cooldown_counter, 180)
+		//TODO: play hurt sound
+	}
 	GAME.toggle_pause(PLAYER.hp == 0 ? PAUSE_EVENT.HITSTOP_MAJOR : PAUSE_EVENT.HITSTOP_MINOR)
 	hit_invincibility = hit_invincibility_max
+	parry_window_counter = 0
 	if (alive and PLAYER.hp == 0) {
 		death()
 	}
+}
+
+/// @function is_parrying
+is_parrying = function() {
+	return (parry_window_counter > 0 and hit_invincibility <= 0)
+}
+
+/// @function register_parry
+register_parry = function(parried_attack) {
+	parry_window_counter = 0
+	parry_invincibility = parry_invincibility_max
+	parry_cooldown_counter = max(parry_cooldown_counter, 180)
+	WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_big, c_aqua, id).destroy_on_animation_end = false
+	GAME.toggle_pause(PAUSE_EVENT.HITSTOP_MINOR)
 }
 
 /// @function death
 death = function() {
 	alive = false
 	trigger_death_fx = true
+}
+
+draw_mask = function() { //override
+	draw_sprite_stretched_ext((mask_index == attacking_mask) ? spr_shape_circle_small : spr_shape_square_corner, 0, bbox_left, bbox_top, bbox_right-bbox_left, bbox_bottom-bbox_top, c_lime, 1)
 }

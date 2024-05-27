@@ -10,8 +10,8 @@
   "function":2,
   "name":"acv_ease",
   "parent":{
-    "name":"Animation Curves",
-    "path":"folders/Animation Curves.yy",
+    "name":"Easing Curves",
+    "path":"folders/Animation Curves/Easing Curves.yy",
   },
   "resourceType":"GMAnimCurve",
   "resourceVersion":"2.0",

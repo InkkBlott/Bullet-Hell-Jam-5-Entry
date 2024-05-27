@@ -1,6 +1,6 @@
 event_inherited()
 
-image_angle --
+image_angle += spin_speed
 
 if (((x < 0 and hspeed < 0) or (x >= room_width and hspeed > 0)) and bounces_x < bounce_limit) {
 	hspeed *= -1

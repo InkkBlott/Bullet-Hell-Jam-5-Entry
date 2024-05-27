@@ -4,3 +4,4 @@ destroy_out_of_bounds = true
 destroy_on_animation_end = true
 flicker = false
 flicker_timer = 0
+attached_instance = noone

@@ -1,10 +1,18 @@
 event_inherited()
 
 if (attack_ongoing and !instance_timeline_is_running(id)) attack_ongoing = false //should be set at the end of attack timelines, but just in case
-
-var m_dir = -1
+if (focus_mode) focus_mode = false
+var m_dir = -1, attack_this_frame = false
 if (is_player_controlled()) {
-	//movement
+	//level up
+	var level_up = false
+	while (level < array_length(PLAYER.levels)-1 and WORLD.score_points >= PLAYER.levels[level+1].score_requirement) {
+		level ++
+		level_up = true
+	}
+	if (level_up) WORLD.new_fx(x, y, obj_fx_playerLevelUpShadow, 60, DEPTH_LEVEL.PLAYER_EFFECTS,,,,, id)
+	
+	//movement direction
 	var m_x = 0, m_y = 0
 	if (keyboard_check(vk_left)) m_x --
 	if (keyboard_check(vk_right)) m_x ++
@@ -13,18 +21,46 @@ if (is_player_controlled()) {
 	
 	if (m_x != 0 or m_y != 0) m_dir = point_direction(0, 0, m_x, m_y)
 	
+	//focus mode
+	if (keyboard_check(vk_shift)) focus_mode = true
+	
 	//shoot
 	if (!attack_ongoing and keyboard_check(vk_space)) { 
 		attack()
+		attack_this_frame = true
 	}
 }
+
+//parry
+if (parry_window_counter > 0) parry_window_counter --
+if (parry_cooldown_counter > 0) parry_cooldown_counter --
+if (parry_cooldown_counter == 0) {
+	WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_small, c_aqua, id).destroy_on_animation_end = false
+	with (WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_small, c_aqua, id)) {
+		destroy_on_animation_end = false
+		image_angle = 45
+		image_xscale = 0.8
+		image_yscale = 0.8
+	}
+	parry_cooldown_counter = -1
+}
+if (hit_invincibility > 0) parry_cooldown_counter = max(parry_cooldown_counter, 60)
+if (attack_this_frame) {
+	if (parry_cooldown_counter <= 0) parry_window_counter = 30
+	parry_cooldown_counter = max(parry_cooldown_counter, 90)
+}
+
+//movement
 if (m_dir != -1) {
 	direction = m_dir
-	speed = (keyboard_check(vk_shift) ? movement_speed_slow : movement_speed)
+	speed = (focus_mode ? movement_speed_focus : movement_speed)
 } else speed = 0
 
+//combat status
+if (parry_invincibility > 0) parry_invincibility --
 if (hit_invincibility > 0) hit_invincibility --
-
+sprite_index = (shielded) ? shielded_sprite : normal_sprite
+mask_index = (attack_this_frame or attack_ongoing or is_parrying()) ? attacking_mask : normal_mask //bigger collision mask when attacking
 visible = (alive and (hit_invincibility <= 0 or hit_invincibility % 4 < 2))
 
 if (trigger_death_fx) {

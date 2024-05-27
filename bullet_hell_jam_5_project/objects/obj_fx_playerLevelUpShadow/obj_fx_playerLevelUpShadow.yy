@@ -2,16 +2,16 @@
   "$GMObject":"",
   "%Name":"obj_fx_playerLevelUpShadow",
   "eventList":[
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_fx_playerLevelUpShadow",
   "overriddenProperties":[],
   "parent":{
-    "name":"Effect Particles",
-    "path":"folders/Objects/Effect Particles.yy",
+    "name":"Effects",
+    "path":"folders/Objects/Effects.yy",
   },
   "parentObjectId":{
     "name":"obj_effectAnim",

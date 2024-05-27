@@ -36,10 +36,16 @@ function draw_rectangle_outline(x1, y1, x2, y2, thickness=1) {
 
 #region Convenience functions
 
+/// @function func_shader_rgb
+function func_shader_rgb(r, g, b) { return [r/255, g/255, b/255] }
+
+/// @function func_shader_rgba
+function func_shader_rgba(r, g, b, a) { return [r/255, g/255, b/255, a] }
+
 /// @function func_correct_angle(angle)
 /// @description converts an angle value outside the bounds of 0 and 359.999.. to one within those bounds
 /// @param {real} angle Angle value to be corrected
-function func_correct_angle(angle){
+function func_correct_angle(angle) {
 	if (angle >= 360) return angle % 360
 	if (angle < 0) return (angle % 360) + 360
 	return angle

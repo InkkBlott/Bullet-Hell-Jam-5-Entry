@@ -9,8 +9,8 @@
   "name":"obj_fx_poof",
   "overriddenProperties":[],
   "parent":{
-    "name":"Effect Particles",
-    "path":"folders/Objects/Effect Particles.yy",
+    "name":"Effects",
+    "path":"folders/Objects/Effects.yy",
   },
   "parentObjectId":{
     "name":"obj_effectAnim",

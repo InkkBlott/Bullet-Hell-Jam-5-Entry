@@ -1,0 +1,1 @@
+if (alive and gauge_fill_on_escape) WORLD.fill_gauge(gauge_fill_index, gauge_fill_value)

@@ -4,29 +4,19 @@ depth = DEPTH_LEVEL.HUD
 PLAYER.reset()
 
 boss_gauges = []
-//[DEV] Minimized mechanic for the jam!
-//for (var i=0; i<3; i++) {
-//	boss_gauges[i] = {
-//		value: 0,
-//		bg_x: room_width - ((sprite_get_width(spr_hud_bossGauge_bg)+2) * (i + 1)),
-//		bg_y: 2,
-//		bar_x: room_width - ((sprite_get_width(spr_hud_bossGauge_bg)+2) * (i + 1)) + 3,
-//		bar_y: 5,
-//		bar_sprite: spr_hud_bossGauge_bar1,
-//		anim_frame: 0,
-//	}
-//}
-//boss_gauges[1].bar_sprite = spr_hud_bossGauge_bar2
-//boss_gauges[2].bar_sprite = spr_hud_bossGauge_bar3
-boss_gauges[0] = {
-	value: 0.5,
-	bg_x: room_width - sprite_get_width(spr_hud_bossGauge_bg) - 2,
-	bg_y: 2,
-	bar_x: room_width - sprite_get_width(spr_hud_bossGauge_bg) + 1,
-	bar_y: 5,
-	bar_sprite: spr_hud_bossGauge_bar1,
-	anim_frame: 0,
+for (var i=0; i<3; i++) {
+	boss_gauges[i] = {
+		value: 0,
+		bg_x: room_width - ((sprite_get_width(spr_hud_bossGauge_bg)+2) * (i + 1)),
+		bg_y: 2,
+		bar_x: room_width - ((sprite_get_width(spr_hud_bossGauge_bg)+2) * (i + 1)) + 3,
+		bar_y: 5,
+		bar_sprite: spr_hud_bossGauge_bar1,
+		anim_frame: 0,
+	}
 }
+boss_gauges[1].bar_sprite = spr_hud_bossGauge_bar2
+boss_gauges[2].bar_sprite = spr_hud_bossGauge_bar3
 
 current_stage = undefined
 current_stage_index = 0
@@ -67,13 +57,44 @@ new_prop = function(_x, _y, sprite, depth_level = DEPTH_LEVEL.BACKGROUND, destro
 	return o
 }
 
-/// @function new_fx(x, y, obj, duration, [depth_level], [direction], [speed], [sprite], [blend_color])
-new_fx = function(_x, _y, obj, duration, depth_level=DEPTH_LEVEL.BACKGROUND, dir=undefined, spd=undefined, sprite=undefined, blend_color=undefined) {
+/// @function new_fx(x, y, obj, duration, [depth_level], [direction], [speed], [sprite], [blend_color], [attached_instance])
+new_fx = function(_x, _y, obj, duration, depth_level=DEPTH_LEVEL.BACKGROUND, dir=undefined, spd=undefined, sprite=undefined, blend_color=undefined, attach=undefined) {
 	var o = instance_create_depth(_x, _y, depth_level, obj)
 	o.destroy_timer = duration
 	if (dir) o.direction = dir
 	if (spd) o.speed = spd
 	if (sprite) o.sprite_index = sprite
 	if (blend_color) o.image_blend = blend_color
+	if (attach) o.attached_instance = attach
 	return o
+}
+
+/// @function warningLine(x, y, direction, distance, duration, [density], [creator])
+warningLine = function(_x, _y, _dir, _dist, _dur, _freq=25, _creator=noone) {
+	var c = dcos(_dir)
+	var s = -dsin(_dir)
+	var ox, oy, in_frame
+	var start_in_frame = point_in_rectangle(_x, _y, -10, -10, room_width+10, room_height+10)
+	for (var i=0; i<=_dist; i+=_freq) {
+		ox = _x+(i*c)
+		oy = _y+(i*s)
+		in_frame = point_in_rectangle(ox, oy, -10, -10, room_width+10, room_height+10)
+		if (!in_frame) {
+			if (start_in_frame) return; //if going from in-bounds to out-of-bounds, terminate line
+			continue; //if out-of-bounds before and after iteration, just skip the effect creation and continue
+		} else if (!start_in_frame) { start_in_frame = true } //if going from out-of-bounds to in-bounds, trigger "start in bounds" state
+		new_fx(ox, oy, obj_fx_warning, _dur, DEPTH_LEVEL.WARNINGS).linked_instance = _creator
+	}
+}
+
+/// @function warningZone(x1, y1, x2, duration, [density], [circular], [creator])
+warningZone = function(_x1, _y1, _x2, _y2, _dur, _freq=25, _circle=false, _creator=noone) {
+	if (_circle) var center_x = (_x2-_x1)/2, center_y = (_y2-_y1)/2, size = min(_x2-_x1, _y2-_y1)
+	for (var _x=_x1; _x<=_x2; _x+=_freq) {
+		for (var _y=_y1; _y<=_y2; _y+=_freq) {
+			if (!point_in_rectangle(_x, _y, -10, -10, room_width+10, room_height+10)) continue;
+			if (_circle and point_distance(center_x, center_y, _x, _y) > size) continue;
+			new_fx(_x, _y, obj_fx_warning, _dur, DEPTH_LEVEL.WARNINGS).linked_instance = _creator
+		}
+	}
 }

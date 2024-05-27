@@ -1,3 +1,5 @@
+randomize()
+
 window_set_size(room_width*SETTINGS.window_scale, room_height*SETTINGS.window_scale)
 window_position_reset()
 depth = DEPTH_LEVEL.HUD
@@ -45,6 +47,7 @@ stage_instance = noone //obj_sys_stageScreen instance
 
 hitstop = 0
 paused = false
+__pause_instance_deactivation = false
 pause_backdrop = undefined //sprite from application surface on pause
 pause_event = undefined //PAUSE_EVENT code
 pause_text = scribble("PAUSED").blend(c_aqua, 1).scale(3).align(fa_center, fa_middle)
@@ -65,7 +68,7 @@ toggle_pause = function(ev = undefined) {
 			hitstop = 20
 		}
 		pause_backdrop = sprite_create_from_surface(application_surface, 0, 0, surface_get_width(application_surface), surface_get_height(application_surface), false, false, 0, 0)
-		instance_deactivate_all(true) //keep this the last thing in the block. Instances can't be drawn or do anything once deactivated
+		__pause_instance_deactivation = true
 	} else {
 		instance_activate_all()
 		if (sprite_exists(pause_backdrop)) sprite_delete(pause_backdrop)

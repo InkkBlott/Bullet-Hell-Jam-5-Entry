@@ -11,12 +11,4 @@ if (is_player_controlled()) {
 	//movement lock
 	x = clamp(x, 0, room_width-1)
 	y = clamp(y, 0, room_height-1)
-	
-	//level up
-	var level_up = false
-	while (level < array_length(PLAYER.levels)-1 and WORLD.score_points >= PLAYER.levels[level+1].score_requirement) {
-		level ++
-		level_up = true
-	}
-	if (level_up) WORLD.new_fx(x, y, obj_fx_playerLevelUpShadow, 60, DEPTH_LEVEL.PLAYER_EFFECTS)
 }
