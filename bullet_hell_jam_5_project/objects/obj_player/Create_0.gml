@@ -1,5 +1,6 @@
 event_inherited()
 
+<<<<<<< HEAD
 normal_sprite = spr_playerShip_default_00
 shielded_sprite = spr_playerShip_default_01
 normal_mask = spr_playerShip_default_00
@@ -8,6 +9,13 @@ attacking_mask = spr_playerShip_default_01
 focus_mode = false
 movement_speed = 3
 movement_speed_focus = 1.5
+=======
+movement_speed = 3
+movement_speed_slow = 1.5
+normal_sprite = spr_playerShip_default_00
+attacking_sprite = spr_playerShip_default_01
+focus_mode = false
+>>>>>>> origin/main
 
 level = 0
 player_control_active = true
@@ -82,5 +90,9 @@ death = function() {
 }
 
 draw_mask = function() { //override
+<<<<<<< HEAD
 	draw_sprite_stretched_ext((mask_index == attacking_mask) ? spr_shape_circle_small : spr_shape_square_corner, 0, bbox_left, bbox_top, bbox_right-bbox_left, bbox_bottom-bbox_top, c_lime, 1)
+=======
+	draw_sprite_stretched_ext((mask_index == attacking_sprite) ? spr_shape_circle_small : spr_shape_square_corner, 0, bbox_left, bbox_top, bbox_right-bbox_left, bbox_bottom-bbox_top, c_lime, 1)
+>>>>>>> origin/main
 }

@@ -4,6 +4,7 @@ if (attack_ongoing and !instance_timeline_is_running(id)) attack_ongoing = false
 if (focus_mode) focus_mode = false
 var m_dir = -1, attack_this_frame = false
 if (is_player_controlled()) {
+<<<<<<< HEAD
 	//level up
 	var level_up = false
 	while (level < array_length(PLAYER.levels)-1 and WORLD.score_points >= PLAYER.levels[level+1].score_requirement) {
@@ -12,6 +13,8 @@ if (is_player_controlled()) {
 	}
 	if (level_up) WORLD.new_fx(x, y, obj_fx_playerLevelUpShadow, 60, DEPTH_LEVEL.PLAYER_EFFECTS,,,,, id)
 	
+=======
+>>>>>>> origin/main
 	//movement direction
 	var m_x = 0, m_y = 0
 	if (keyboard_check(vk_left)) m_x --
@@ -28,6 +31,7 @@ if (is_player_controlled()) {
 	if (!attack_ongoing and keyboard_check(vk_space)) { 
 		attack()
 		attack_this_frame = true
+<<<<<<< HEAD
 	}
 }
 
@@ -41,6 +45,8 @@ if (parry_cooldown_counter == 0) {
 		image_angle = 45
 		image_xscale = 0.8
 		image_yscale = 0.8
+=======
+>>>>>>> origin/main
 	}
 	parry_cooldown_counter = -1
 }
@@ -53,14 +59,22 @@ if (attack_this_frame) {
 //movement
 if (m_dir != -1) {
 	direction = m_dir
+<<<<<<< HEAD
 	speed = (focus_mode ? movement_speed_focus : movement_speed)
+=======
+	speed = (focus_mode ? movement_speed_slow : movement_speed)
+>>>>>>> origin/main
 } else speed = 0
 
 //combat status
 if (parry_invincibility > 0) parry_invincibility --
 if (hit_invincibility > 0) hit_invincibility --
+<<<<<<< HEAD
 sprite_index = (shielded) ? shielded_sprite : normal_sprite
 mask_index = (attack_this_frame or attack_ongoing or is_parrying()) ? attacking_mask : normal_mask //bigger collision mask when attacking
+=======
+mask_index = (attack_this_frame or attack_ongoing) ? attacking_sprite : normal_sprite //bigger collision mask when attacking
+>>>>>>> origin/main
 visible = (alive and (hit_invincibility <= 0 or hit_invincibility % 4 < 2))
 
 if (trigger_death_fx) {
