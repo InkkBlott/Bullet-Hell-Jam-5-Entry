@@ -23,11 +23,7 @@
   ],
   "name":"spr_fx_crossFlare_small",
   "nineSlice":null,
-<<<<<<< HEAD
   "origin":4,
-=======
-  "origin":0,
->>>>>>> origin/main
   "parent":{
     "name":"Effects",
     "path":"folders/Sprites/Effects.yy",
@@ -79,13 +75,8 @@
     ],
     "visibleRange":null,
     "volume":1.0,
-<<<<<<< HEAD
     "xorigin":15,
     "yorigin":15,
-=======
-    "xorigin":0,
-    "yorigin":0,
->>>>>>> origin/main
   },
   "swatchColours":null,
   "swfPrecision":0.5,

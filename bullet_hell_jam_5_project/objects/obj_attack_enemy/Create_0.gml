@@ -9,11 +9,8 @@ scroll_with_stage = false
 scroll_factor = 1
 player_hit = false //for use in destroy event
 parried = false
-<<<<<<< HEAD
 destroy_on_parry = true
 parry_point_value = 100
-=======
->>>>>>> origin/main
 advanced_collision_detection = true
 __collision_size = 2
 __collision_size_init_sentinel = undefined

@@ -4,7 +4,6 @@ if (destroy_out_of_bounds and !point_in_rectangle(x, y, 0-out_of_bounds_buffer, 
 else {
 	if (attack_active and instance_exists(PLAYER.instance) 
 	and PLAYER_INSTANCE.is_vulnerable() and collision_check(PLAYER_INSTANCE)) {
-<<<<<<< HEAD
 		if (PLAYER_INSTANCE.is_parrying()) {
 			parried = true
 			WORLD.score_points += parry_point_value
@@ -14,8 +13,5 @@ else {
 		else {
 			hit_player()
 		}
-=======
-		hit_player()
->>>>>>> origin/main
 	}
 }

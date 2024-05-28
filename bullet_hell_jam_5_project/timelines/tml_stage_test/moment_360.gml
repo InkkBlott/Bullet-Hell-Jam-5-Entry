@@ -9,9 +9,5 @@ for (var i=0; i<array_length(stage_vars.enemies); i++) {
 }
 
 //spawn boss
-<<<<<<< HEAD
 var boss = instance_create_depth(room_width/2, room_height/6, DEPTH_LEVEL.BIG_ENEMIES, obj_enemy_boss)
 boss.boss_status = true
-=======
-instance_create_depth(room_width/2, room_height/6, DEPTH_LEVEL.BIG_ENEMIES, obj_enemy_boss)
->>>>>>> origin/main
