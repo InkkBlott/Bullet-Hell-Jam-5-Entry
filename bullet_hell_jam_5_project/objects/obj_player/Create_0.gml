@@ -18,6 +18,7 @@ trigger_death_fx = false
 
 parry_cooldown_counter = 0
 parry_window_counter = 0
+parry_window_max = 3
 parry_invincibility = 0
 parry_invincibility_max = 30
 shielded = true
@@ -70,7 +71,7 @@ is_parrying = function() {
 register_parry = function(parried_attack) {
 	parry_window_counter = 0
 	parry_invincibility = parry_invincibility_max
-	parry_cooldown_counter = max(parry_cooldown_counter, 180)
+	parry_cooldown_counter = max(parry_cooldown_counter, 240)
 	WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_big, c_aqua, id).destroy_on_animation_end = false
 	GAME.toggle_pause(PAUSE_EVENT.HITSTOP_MINOR)
 }

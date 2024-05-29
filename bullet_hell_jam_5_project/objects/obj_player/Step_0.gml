@@ -46,7 +46,7 @@ if (parry_cooldown_counter == 0) {
 }
 if (hit_invincibility > 0) parry_cooldown_counter = max(parry_cooldown_counter, 60)
 if (attack_this_frame) {
-	if (parry_cooldown_counter <= 0) parry_window_counter = 30
+	if (parry_cooldown_counter <= 0) parry_window_counter = parry_window_max //parry window activation
 	parry_cooldown_counter = max(parry_cooldown_counter, 90)
 }
 

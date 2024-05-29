@@ -1,15 +1,13 @@
 // Inherit the parent event
 event_inherited();
 
-hp = 1000
-hp_max = 1000
-point_value = 10000
+hp = 3
+hp_max = 3
+point_value = 100
 action_queue_default = 0
 
 default_attacks = [
-	tml_enemyAttack_bossNormal_1,
-	tml_enemyAttack_bossNormal_2,
-	tml_enemyAttack_bossNormal_3,
+	//TODO
 ]
 attack_points = [
 	[-32, -9], //0: left hand (OUR left)
