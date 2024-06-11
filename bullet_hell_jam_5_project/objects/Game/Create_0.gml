@@ -38,8 +38,8 @@ player = {
 #macro PLAYER_INSTANCE global.game.player.instance
 
 stages = [
-	tml_stage_test
-	//tml_stage_main, //0
+	//tml_stage_test
+	tml_stage_main, //0
 ]
 stage_index = 0
 stage_instance = noone //obj_sys_stageScreen instance

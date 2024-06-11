@@ -24,7 +24,7 @@ parry_invincibility_max = 30
 shielded = true
 
 action_queue = [
-	[CHARACTER_ACTION.MOVE_PATH, pth_playerSpawn, 60, acv_ease],
+	[CHARACTER_ACTION.MOVE_PATH, pth_playerSpawn, 60, acv_easeIn],
 	[CHARACTER_ACTION.METHOD, function() { hit_invincibility = 30; image_blend = c_white; image_xscale = 1; image_yscale = 1; image_angle = 0;}],
 ]
 action_queue_label = ACTION_QUEUE_LABEL.PLAYER_SPAWN
@@ -51,7 +51,7 @@ damage = function() {
 		//TODO: play shield destroy sound
 	} else {
 		PLAYER.hp = max(PLAYER.hp - 1, 0)
-		parry_cooldown_counter = max(parry_cooldown_counter, 180)
+		parry_cooldown_counter = max(parry_cooldown_counter, 240)
 		//TODO: play hurt sound
 	}
 	GAME.toggle_pause(PLAYER.hp == 0 ? PAUSE_EVENT.HITSTOP_MAJOR : PAUSE_EVENT.HITSTOP_MINOR)
@@ -72,7 +72,7 @@ register_parry = function(parried_attack) {
 	parry_window_counter = 0
 	parry_invincibility = parry_invincibility_max
 	parry_cooldown_counter = max(parry_cooldown_counter, 240)
-	WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_big, c_aqua, id).destroy_on_animation_end = false
+	WORLD.new_fx(x, y, obj_effectAnim, 4, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_big, c_aqua, id).destroy_on_animation_end = false
 	GAME.toggle_pause(PAUSE_EVENT.HITSTOP_MINOR)
 }
 

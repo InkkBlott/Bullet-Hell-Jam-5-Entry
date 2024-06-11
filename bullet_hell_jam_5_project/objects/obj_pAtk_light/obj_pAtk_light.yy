@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_atk_player_1",
-    "path":"sprites/spr_atk_player_1/spr_atk_player_1.yy",
+    "name":"spr_atk_player_01",
+    "path":"sprites/spr_atk_player_01/spr_atk_player_01.yy",
   },
   "spriteMaskId":null,
   "visible":true,

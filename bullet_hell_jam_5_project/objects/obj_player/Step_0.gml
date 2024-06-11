@@ -29,25 +29,25 @@ if (is_player_controlled()) {
 		attack()
 		attack_this_frame = true
 	}
-}
 
-//parry
-if (parry_window_counter > 0) parry_window_counter --
-if (parry_cooldown_counter > 0) parry_cooldown_counter --
-if (parry_cooldown_counter == 0) {
-	WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_small, c_aqua, id).destroy_on_animation_end = false
-	with (WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_small, c_aqua, id)) {
-		destroy_on_animation_end = false
-		image_angle = 45
-		image_xscale = 0.8
-		image_yscale = 0.8
+	//parry
+	if (parry_window_counter > 0) parry_window_counter --
+	if (parry_cooldown_counter > 0) parry_cooldown_counter --
+	if (parry_cooldown_counter == 0) {
+		WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_small, c_aqua, id).destroy_on_animation_end = false
+		with (WORLD.new_fx(x, y, obj_effectAnim, 3, DEPTH_LEVEL.FOREGROUND,,, spr_fx_crossFlare_small, c_aqua, id)) {
+			destroy_on_animation_end = false
+			image_angle = 45
+			image_xscale = 0.8
+			image_yscale = 0.8
+		}
+		parry_cooldown_counter = -1
 	}
-	parry_cooldown_counter = -1
-}
-if (hit_invincibility > 0) parry_cooldown_counter = max(parry_cooldown_counter, 60)
-if (attack_this_frame) {
-	if (parry_cooldown_counter <= 0) parry_window_counter = parry_window_max //parry window activation
-	parry_cooldown_counter = max(parry_cooldown_counter, 90)
+	if (hit_invincibility > 0) parry_cooldown_counter = max(parry_cooldown_counter, 60)
+	if (attack_this_frame) {
+		if (parry_cooldown_counter <= 0) parry_window_counter = parry_window_max //parry window activation
+		parry_cooldown_counter = max(parry_cooldown_counter, 90)
+	}
 }
 
 //movement

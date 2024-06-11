@@ -10,8 +10,8 @@ enum DEPTH_LEVEL {
 	HUD,
 	FOREGROUND,
 	ENEMY_ATTACKS_MAJOR,
-	ENEMY_ATTACKS,
 	SMALL_ENEMIES,
+	ENEMY_ATTACKS,
 	WARNINGS,
 	PLAYER_CHARACTER,
 	PLAYER_EFFECTS,
@@ -39,9 +39,10 @@ enum CHARACTER_ACTION {
 	FACE_DIRECTION, // #direction, [#turn_speed]
 	MOVE_DIRECTION, // #direction, #speed, [#frames]
 	MOVE_POSITION, // #pos_x, #pos_y, #frames, [@anim_curve]
-	MOVE_PATH, // @path, #frames, [@anim_curve]
+	MOVE_PATH, // @path, #frames, [@anim_curve], [#scale_x], [#scale_y]
 	TIMELINE, // @timeline, [?wait_until_done]
 	ATTACK, // [attack_index], [?wait_until_done]
+	STOP_ATTACK, // (no args)
 	METHOD, // {}method_function, [[]argument_array]
 	DESTROY, // (no args)
 }

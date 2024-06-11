@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_fx_waveParticle_small",
-    "path":"sprites/spr_fx_waveParticle_small/spr_fx_waveParticle_small.yy",
+    "name":"spr_fx_wave_small",
+    "path":"sprites/spr_fx_wave_small/spr_fx_wave_small.yy",
   },
   "spriteMaskId":null,
   "visible":true,

@@ -1,0 +1,21 @@
+{
+  "$GMPath":"",
+  "%Name":"pth_intro_demon1_0",
+  "closed":false,
+  "kind":1,
+  "name":"pth_intro_demon1_0",
+  "parent":{
+    "name":"Paths",
+    "path":"folders/Paths.yy",
+  },
+  "points":[
+    {"speed":100.0,"x":-237.0,"y":-40.0,},
+    {"speed":100.0,"x":41.0,"y":-40.0,},
+    {"speed":100.0,"x":56.0,"y":-19.0,},
+    {"speed":100.0,"x":34.0,"y":-2.0,},
+    {"speed":100.0,"x":0.0,"y":0.0,},
+  ],
+  "precision":4,
+  "resourceType":"GMPath",
+  "resourceVersion":"2.0",
+}

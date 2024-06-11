@@ -25,6 +25,15 @@ for (var i=0; i<360; i+=10) {
 	path_add_point(PATHS.circle_large_ccw, dcos(i+90)*size_l, size_l-(dsin(i+90)*size_l), 100)
 }
 
+PATHS.exit_right = path_add() //scale these to determine length/direction
+path_set_closed(PATHS.exit_right, false)
+path_add_point(PATHS.exit_right, 0, 0, 100)
+path_add_point(PATHS.exit_right, 1, 0, 100)
+PATHS.exit_down = path_add()
+path_set_closed(PATHS.exit_down, false)
+path_add_point(PATHS.exit_down, 0, 0, 100)
+path_add_point(PATHS.exit_down, 0, 1, 100)
+
 #endregion
 
 #region Action Queues

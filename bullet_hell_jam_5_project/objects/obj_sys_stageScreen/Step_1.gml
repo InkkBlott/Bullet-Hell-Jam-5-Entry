@@ -5,7 +5,7 @@ if (scrolling_x != 0 or scrolling_y != 0) {
 			y += scrolling_y*scroll_factor
 		}
 	}
-	with (obj_enemyAttack) {
+	with (obj_attack_enemy) {
 		if (scroll_with_stage) {
 			x += scrolling_x*scroll_factor
 			y += scrolling_y*scroll_factor

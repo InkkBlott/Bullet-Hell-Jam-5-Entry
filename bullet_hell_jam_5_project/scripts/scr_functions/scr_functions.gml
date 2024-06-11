@@ -37,10 +37,10 @@ function draw_rectangle_outline(x1, y1, x2, y2, thickness=1) {
 #region Convenience functions
 
 /// @function func_shader_rgb
-function func_shader_rgb(r, g, b) { return [r/255, g/255, b/255] }
+function func_shader_rgb(r, g, b, a=undefined) { return (a) ? [r/255, g/255, b/255, a] : [r/255, g/255, b/255] }
 
-/// @function func_shader_rgba
-function func_shader_rgba(r, g, b, a) { return [r/255, g/255, b/255, a] }
+/// @function func_shader_color
+function func_shader_color(color, alpha=undefined) { return (alpha) ? [color_get_red(color)/255, color_get_green(color)/255, color_get_blue(color)/255, alpha] : [color_get_red(color)/255, color_get_green(color)/255, color_get_blue(color)/255] }
 
 /// @function func_correct_angle(angle)
 /// @description converts an angle value outside the bounds of 0 and 359.999.. to one within those bounds
@@ -72,6 +72,14 @@ function func_array_drain(array) {
 /// @desc Returns an [x, y] coordinate pair representing a positional offset in the given direction
 function point_in_direction(dir, dist) { return [dcos(dir)*dist, 0-dsin(dir)*dist] }
 
+/// @function offset_rotation(off_x, off_y, angle)
+/// @desc Returns an [x, y] coordinate pair representing a positional offset rotated by the given number of degrees
+function offset_rotation(off_x, off_y, angle) {
+	var dist = point_distance(0, 0, off_x, off_y)
+	var ang = point_direction(0, 0, off_x, off_y) + angle
+	return point_in_direction(ang, dist)
+}
+
 /// @function instance_is_a(instance, object1, object2*, ...)
 /// @param {object} instance Instance to check object lineage of
 /// @param {object} object1 (mandatory) First object to check instance against
@@ -95,10 +103,10 @@ function instance_set_timeline(_id, _timeline, _speed=1) {
 
 /// @function instance_stop_timeline(id)
 function instance_stop_timeline(_id) {
-	_id.timeline_index = undefined
 	_id.timeline_position = 0
 	_id.timeline_speed = 1
 	_id.timeline_running = false
+	_id.timeline_index = noone
 }
 
 /// @function instance_timeline_is_running(id)

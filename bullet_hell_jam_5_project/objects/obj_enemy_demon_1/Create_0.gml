@@ -6,24 +6,23 @@ hp_max = 3
 point_value = 100
 action_queue_default = 0
 
-eye_direction = 0
+eye_direction = 270
 
-default_attacks = [
-	//TODO
+preset_attacks = [
+	tml_eAtk_demon1_0,
+	tml_eAtk_demon1_1,
 ]
-attack_points = [
-	[-32, -9], //0: left hand (OUR left)
-	[28, -9], //1: right hand (OUR left)
-	[-1, -8], //2: medallion
-	[20, -65], //3: raised hand
-	[0, 64], //4: shooting hand
-]
-preset_action_queues[0] = [
-	[CHARACTER_ACTION.WAIT, 90],
-	[CHARACTER_ACTION.ATTACK, undefined, true],
+
+preset_action_queues[0] = [ //pattern 1
+	[CHARACTER_ACTION.MOVE_PATH, pth_intro_demon1_0, 90, acv_easeIn], //intro
 	[CHARACTER_ACTION.WAIT, 30],
-	[CHARACTER_ACTION.MOVE_PATH, PATHS.circle_small, 120, acv_bounce],
-	[CHARACTER_ACTION.WAIT, 120],
-	[CHARACTER_ACTION.ATTACK, undefined, true],
-	[CHARACTER_ACTION.MOVE_PATH, PATHS.circle_small_ccw, 120, acv_incline],
+	[CHARACTER_ACTION.ATTACK, 0, false],
+	[CHARACTER_ACTION.WAIT, 300], //attack for 5 seconds
+	[CHARACTER_ACTION.STOP_ATTACK],
+	[CHARACTER_ACTION.METHOD, function() { destroy_out_of_bounds = true }],
+	[CHARACTER_ACTION.MOVE_PATH, PATHS.exit_down, 60, acv_rebound, 1, -20], //exit
+	[CHARACTER_ACTION.ATTACK, 1, false], //exit attack
+	[CHARACTER_ACTION.MOVE_PATH, PATHS.exit_down, 350, undefined, 1, room_height],
+	[CHARACTER_ACTION.DESTROY],
 ]
+

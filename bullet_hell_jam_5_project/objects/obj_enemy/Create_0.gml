@@ -15,12 +15,12 @@ combat_active = true
 contact_damage = true //when true, player takes damage from touching
 player_hit = false
 destroy_out_of_bounds = false
-out_of_bounds_buffer = 0
+out_of_bounds_buffer = 50
 scroll_with_stage = false
 scroll_factor = 1
 damage_effect_timer = 0
 
-default_attacks = [tml_enemyAttack_TEST]
+preset_attacks = [tml_eAtk_TEST]
 attack_code = 0
 attack_index = 0
 attack_variables = []
@@ -75,9 +75,9 @@ shoot = function(obj, dir=undefined, spd=undefined, off_x=0, off_y=0, off_rot=fa
 attack = function(code=undefined) {
 	attack_ongoing = true
 	attack_code = code ?? (attack_index ++)
-	attack_index %= array_length(default_attacks)
+	attack_index %= array_length(preset_attacks)
 	attack_variables = []
-	instance_set_timeline(id, default_attacks[attack_code])
+	instance_set_timeline(id, preset_attacks[attack_code])
 }
 
 draw_mask = function() { //override

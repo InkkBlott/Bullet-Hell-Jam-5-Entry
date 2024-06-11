@@ -98,3 +98,32 @@ warningZone = function(_x1, _y1, _x2, _y2, _dur, _freq=25, _circle=false, _creat
 		}
 	}
 }
+
+/// @function clearBullets([flash_effect], [origin_x], [origin_y])
+clearBullets = function(flash=false, _x=undefined, _y=undefined) {
+	if (flash) {
+		with(WORLD.new_fx(0, 0, obj_effectAnim, 2, DEPTH_LEVEL.HUD,,, spr_shape_square_corner)) {
+			image_xscale = room_width/10
+			image_yscale = room_height/10
+		}
+	}
+	var use_origin = (_x != undefined and _y != undefined) 
+	with(obj_attack_enemy) {
+		switch (object_index) {
+			case obj_eAtk_ray_1:
+				var c = dcos(image_angle), s = -dsin(image_angle)
+				var px, py
+				for (var i=0; i<ROOM_DIAGONAL; i+=40) {
+					px = x + (i*c)
+					py = y + (i*s)
+					if (!point_in_rectangle(px, py, 0, 0, room_width-1, room_height-1)) break;
+					WORLD.new_fx(px, py, obj_fx_bulletClear, 60, DEPTH_LEVEL.SMALL_ENEMY_EFFECTS, (use_origin) ? point_direction(_x, _y, x, y) : direction, (use_origin) ? 0.5+((point_distance(_x, _y, px, py)/room_height)*4) : speed)
+				}
+				break;
+			default:
+				WORLD.new_fx(x, y, obj_fx_bulletClear, 60, DEPTH_LEVEL.SMALL_ENEMY_EFFECTS, (use_origin) ? point_direction(_x, _y, x, y) : direction, (use_origin) ? 0.5+((point_distance(_x, _y, x, y)/room_height)*4) : speed)
+				break;
+		}
+		instance_destroy()
+	}
+}

@@ -60,7 +60,7 @@
     },
     "name":"spr_enemy_machine_1",
     "playback":1,
-    "playbackSpeed":0.08,
+    "playbackSpeed":0.25,
     "playbackSpeedType":1,
     "resourceType":"GMSequence",
     "resourceVersion":"2.0",

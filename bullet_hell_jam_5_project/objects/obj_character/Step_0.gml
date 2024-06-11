@@ -40,22 +40,25 @@ if (act != undefined) {
 		}
 		action_counter ++
 		var progress = action_counter / act[3]
-		if (array_length(act) == 5) progress = animcurve_channel_evaluate(animcurve_get_channel(act[4], 0), progress) //apply curve
+		if (array_length(act) == 5 and act[4] != undefined) progress = animcurve_channel_evaluate(animcurve_get_channel(act[4], 0), progress) //apply curve
 		x = action_variables[0] + (action_variables[2] * progress)
 		y = action_variables[1] + (action_variables[3] * progress)
 		if (action_counter >= act[3]) action_finished = true
 	}
-	else if (act_code == CHARACTER_ACTION.MOVE_PATH) { // @path, #frames, [@anim_curve]
-		if (action_counter == 0) {
+	else if (act_code == CHARACTER_ACTION.MOVE_PATH) { // @path, #frames, [@anim_curve], [#scale_x], [#scale_y]
+		if (array_length(action_variables) == 0) {
 			action_variables[0] = x
 			action_variables[1] = y
 		}
 		action_counter ++
 		var progress = action_counter / act[2]
-		if (array_length(act) == 4) progress = animcurve_channel_evaluate(animcurve_get_channel(act[3], 0), progress) //apply curve
+		if (array_length(act) >= 4 and act[3] != undefined) progress = animcurve_channel_evaluate(animcurve_get_channel(act[3], 0), progress) //apply curve
 		var prev_x = x, prev_y = y
-		x = action_variables[0] + path_get_x(act[1], progress)
-		y = action_variables[1] + path_get_y(act[1], progress)
+		var scale_x = (array_length(act) >= 5) ? act[4] : 1
+		var scale_y = (array_length(act) >= 6) ? act[5] : 1
+		if (progress < 0) { scale_x *= -1; scale_y *= -1; progress *= -1 } //invert for negative progress values (-1 .. 0)
+		x = action_variables[0] + (path_get_x(act[1], progress) * scale_x)
+		y = action_variables[1] + (path_get_y(act[1], progress) * scale_y)
 		direction = point_direction(prev_x, prev_y, x, y)
 		if (action_counter >= act[2]) action_finished = true
 	}
@@ -76,6 +79,11 @@ if (act != undefined) {
 		if (!attack_ongoing or array_length(act) < 3 or !act[2]) {
 			action_finished = true
 		}
+	}
+	else if (act_code == CHARACTER_ACTION.STOP_ATTACK) { // (no args)
+		instance_stop_timeline(id)
+		attack_ongoing = false
+		action_finished = true
 	}
 	else if (act_code == CHARACTER_ACTION.METHOD) { // {}method_function, [[]argument_array]
 		method(id, act[1])(array_length(act) == 3 ? act[2] : undefined)
